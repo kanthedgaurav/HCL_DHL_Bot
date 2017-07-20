@@ -30,14 +30,14 @@ DHL Bot will offer assistive services like Tracking package, Shipping , Get Quot
 
 ## HCL DHL Hackathon Wire Frames
 
-#####Tracking
+##### Tracking
 
 ![Tracking](https://github.com/kanthedgaurav/HCL_DHL_Bot/blob/master/img/Tracking.jpg)
 
-#####Shipping
+##### Shipping
 
 ![Shipping](https://github.com/kanthedgaurav/HCL_DHL_Bot/blob/master/img/Shipping.jpg)
 
-#####Get Quote
+##### Get Quote
 
 ![Get Quote](https://github.com/kanthedgaurav/HCL_DHL_Bot/blob/master/img/Get%20Quote.jpg)
