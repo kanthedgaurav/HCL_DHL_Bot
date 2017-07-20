@@ -16,4 +16,4 @@ DHL Bot will offer assistive services like Tracking package, Shipping , Get Quot
 [Demo Link](	https://dhl-pipeline-1oylq1kfcgpix-webappbucket-14g285dcv3ey5.s3.amazonaws.com/index.html)
 
 ## HCL DHL Hackathon Technology Stack
-![Minion](/img/Technical Stack.jpg) 
+![Technical Stack](https://github.com/kanthedgaurav/HCL_DHL_Bot/blob/master/img/Technical%20Stack.jpg)
