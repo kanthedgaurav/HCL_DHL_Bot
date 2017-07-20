@@ -1,0 +1,459 @@
+{
+  "bot": {
+    "abortStatement": {
+      "messages": [
+        {
+          "content": "Sorry, I could not understand. Goodbye.",
+          "contentType": "PlainText"
+        }
+      ]
+    },
+    "childDirected": false,
+    "clarificationPrompt": {
+      "maxAttempts": 5,
+      "messages": [
+        {
+          "content": "Sorry, can you please repeat that?",
+          "contentType": "PlainText"
+        }
+      ]
+    },
+    "idleSessionTTLInSeconds": 300,
+    "intents": [
+      {
+        "intentName": "DhlService",
+        "intentVersion": "$LATEST"
+      },
+      {
+        "intentName": "GetQuoteService",
+        "intentVersion": "$LATEST"
+      },
+      {
+        "intentName": "ShippingService",
+        "intentVersion": "$LATEST"
+      },
+      {
+        "intentName": "TrackingService",
+        "intentVersion": "$LATEST"
+      }
+    ],
+    "locale": "en-US",
+    "name": "DHL",
+    "voiceId": "Joanna"
+  },
+  "intents": [
+    {
+      "fulfillmentActivity": {
+        "type": "ReturnIntent"
+      },
+      "name": "DhlService",
+      "sampleUtterances": [
+        "Hi",
+        "Hello",
+        "Hello DHL",
+        "DHL"
+      ],
+      "slots": [
+        {
+          "name": "Greetings",
+          "priority": 1,
+          "sampleUtterances": [],
+          "slotConstraint": "Required",
+          "slotType": "AMAZON.WrittenCreativeWorkType",
+          "valueElicitationPrompt": {
+            "maxAttempts": 2,
+            "messages": [
+              {
+                "content": "Welcome to DHL, Please enter Tracking or Shipping or Get Quote.",
+                "contentType": "PlainText"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "confirmationPrompt": {
+        "maxAttempts": 3,
+        "messages": [
+          {
+            "content": "Okay, I have you down for a shipping a package from {PickUpCity} on {PickUpDate} to {DropOffCity} on {DropOffDate}.  Should I book the Shipping?",
+            "contentType": "PlainText"
+          }
+        ]
+      },
+      "dialogCodeHook": {
+        "messageVersion": "1.0",
+        "uri": "arn:aws:lambda:us-east-1:604219518545:function:ShippingServiceCodeHook"
+      },
+      "followUpPrompt": {
+        "prompt": {
+          "maxAttempts": 3,
+          "messages": [
+            {
+              "content": "Can I help you with shipping?",
+              "contentType": "PlainText"
+            }
+          ]
+        },
+        "rejectionStatement": {
+          "messages": [
+            {
+              "content": "Ok, Thank you Have a nice Day!",
+              "contentType": "PlainText"
+            }
+          ]
+        }
+      },
+      "fulfillmentActivity": {
+        "codeHook": {
+          "messageVersion": "1.0",
+          "uri": "arn:aws:lambda:us-east-1:604219518545:function:ShippingServiceCodeHook"
+        },
+        "type": "CodeHook"
+      },
+      "name": "ShippingService",
+      "rejectionStatement": {
+        "messages": [
+          {
+            "content": "Okay, I have cancelled your reservation in progress.",
+            "contentType": "PlainText"
+          }
+        ]
+      },
+      "sampleUtterances": [
+        "DHL Ship",
+        "ship",
+        "Shipping",
+        "Booking",
+        "Sending Package"
+      ],
+      "slots": [
+        {
+          "name": "PickUpDate",
+          "priority": 2,
+          "sampleUtterances": [],
+          "slotConstraint": "Required",
+          "slotType": "AMAZON.DATE",
+          "valueElicitationPrompt": {
+            "maxAttempts": 2,
+            "messages": [
+              {
+                "content": "Pick Up Date , Please .",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "Please let me know pick up date .",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "what date do you want me to pickup ?",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "i can pick up , just let me know pick up date",
+                "contentType": "PlainText"
+              }
+            ],
+            "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+          }
+        },
+        {
+          "name": "DropOffCity",
+          "priority": 3,
+          "sampleUtterances": [],
+          "slotConstraint": "Required",
+          "slotType": "AMAZON.US_STATE",
+          "valueElicitationPrompt": {
+            "maxAttempts": 2,
+            "messages": [
+              {
+                "content": "Please enter drop-off city",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "May I know drop off city ?",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "Please let me know drop off city .",
+                "contentType": "PlainText"
+              }
+            ],
+            "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+          }
+        },
+        {
+          "name": "DropOffDate",
+          "priority": 5,
+          "sampleUtterances": [],
+          "slotConstraint": "Required",
+          "slotType": "AMAZON.DATE",
+          "valueElicitationPrompt": {
+            "maxAttempts": 2,
+            "messages": [
+              {
+                "content": "Drop off date , please .",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "What date do you want to drop off ?",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "Please let me know drop off date .",
+                "contentType": "PlainText"
+              }
+            ],
+            "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+          }
+        },
+        {
+          "name": "PickUpCity",
+          "priority": 4,
+          "sampleUtterances": [],
+          "slotConstraint": "Required",
+          "slotType": "AMAZON.US_CITY",
+          "valueElicitationPrompt": {
+            "maxAttempts": 2,
+            "messages": [
+              {
+                "content": "Please enter pickup city",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "May i know pickup city ?",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "Please let me know pick up city .",
+                "contentType": "PlainText"
+              }
+            ],
+            "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+          }
+        }
+      ]
+    },
+    {
+      "confirmationPrompt": {
+        "maxAttempts": 3,
+        "messages": [
+          {
+            "content": "Okay, Confirm get quote from {PickUpCityt} to {DropOffCityt} on {BoxType}.  is it correct?",
+            "contentType": "PlainText"
+          }
+        ]
+      },
+      "dialogCodeHook": {
+        "messageVersion": "1.0",
+        "uri": "arn:aws:lambda:us-east-1:604219518545:function:GetQuoteServiceCodeHook"
+      },
+      "fulfillmentActivity": {
+        "codeHook": {
+          "messageVersion": "1.0",
+          "uri": "arn:aws:lambda:us-east-1:604219518545:function:GetQuoteServiceCodeHook"
+        },
+        "type": "CodeHook"
+      },
+      "name": "GetQuoteService",
+      "rejectionStatement": {
+        "messages": [
+          {
+            "content": "Okay, Please start again",
+            "contentType": "PlainText"
+          }
+        ]
+      },
+      "sampleUtterances": [
+        "Get Quote",
+        "DHL get Quote",
+        "DHL Get Quote",
+        "shipping cost"
+      ],
+      "slots": [
+        {
+          "name": "DropOffCityt",
+          "priority": 2,
+          "sampleUtterances": [],
+          "slotConstraint": "Required",
+          "slotType": "AMAZON.US_CITY",
+          "valueElicitationPrompt": {
+            "maxAttempts": 2,
+            "messages": [
+              {
+                "content": "Can you please enter drop off city ?",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "Please let me know drop off city",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "Enter drop off city , please .",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "Please let me know drop off city",
+                "contentType": "PlainText"
+              }
+            ],
+            "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+          }
+        },
+        {
+          "name": "PickUpCityt",
+          "priority": 1,
+          "sampleUtterances": [],
+          "slotConstraint": "Required",
+          "slotType": "AMAZON.US_CITY",
+          "valueElicitationPrompt": {
+            "maxAttempts": 2,
+            "messages": [
+              {
+                "content": "Can you please enter pick up city?",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "Pick up city , Please !",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "I need pick up city , please enter.",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "Please let me know pick up city .",
+                "contentType": "PlainText"
+              }
+            ],
+            "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+          }
+        },
+        {
+          "name": "BoxType",
+          "priority": 3,
+          "sampleUtterances": [],
+          "slotConstraint": "Required",
+          "slotType": "BoxTypeValues",
+          "slotTypeVersion": "$LATEST",
+          "valueElicitationPrompt": {
+            "maxAttempts": 2,
+            "messages": [
+              {
+                "content": "Select a box type : Envelope 1 or Box 2 or  Box 3 or Box 4 or Box 5 or Box 6 or Box 7",
+                "contentType": "PlainText"
+              }
+            ],
+            "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"buttons\":[]}]}"
+          }
+        }
+      ]
+    },
+    {
+      "confirmationPrompt": {
+        "maxAttempts": 3,
+        "messages": [
+          {
+            "content": "Okay, Can you confirm Tracking# {Tracking}?",
+            "contentType": "PlainText"
+          }
+        ]
+      },
+      "dialogCodeHook": {
+        "messageVersion": "1.0",
+        "uri": "arn:aws:lambda:us-east-1:604219518545:function:TrackingServiceCodeHook"
+      },
+      "fulfillmentActivity": {
+        "codeHook": {
+          "messageVersion": "1.0",
+          "uri": "arn:aws:lambda:us-east-1:604219518545:function:TrackingServiceCodeHook"
+        },
+        "type": "CodeHook"
+      },
+      "name": "TrackingService",
+      "rejectionStatement": {
+        "messages": [
+          {
+            "content": "Okay, Start Again",
+            "contentType": "PlainText"
+          }
+        ]
+      },
+      "sampleUtterances": [
+        "Tracking",
+        "Track",
+        "DHL Track",
+        "DHL Tracking",
+        "Incoming Package",
+        "mail",
+        "parcel",
+        "package"
+      ],
+      "slots": [
+        {
+          "name": "Tracking",
+          "priority": 1,
+          "sampleUtterances": [],
+          "slotConstraint": "Required",
+          "slotType": "AMAZON.NUMBER",
+          "valueElicitationPrompt": {
+            "maxAttempts": 2,
+            "messages": [
+              {
+                "content": "Please Enter Tracking#",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "May i know tracking# ?",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "can you please let me know tracking# ?",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "Please let me know tracking#",
+                "contentType": "PlainText"
+              },
+              {
+                "content": "I'm looking tracking# , Please enter .",
+                "contentType": "PlainText"
+              }
+            ],
+            "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}"
+          }
+        }
+      ]
+    }
+  ],
+  "slot_types": [
+    {
+      "description": "Box",
+      "enumerationValues": [
+        {
+          "value": "Box 7"
+        },
+        {
+          "value": "Box 5"
+        },
+        {
+          "value": "Box 6"
+        },
+        {
+          "value": "Box 3"
+        },
+        {
+          "value": "Box 4"
+        },
+        {
+          "value": "Box 2"
+        },
+        {
+          "value": "Envelope 1"
+        }
+      ],
+      "name": "BoxTypeValues"
+    }
+  ]
+}
