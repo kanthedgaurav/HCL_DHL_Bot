@@ -15,11 +15,15 @@ DHL Bot will offer assistive services like Tracking package, Shipping , Get Quot
 ## HCL DHL Hackathon Bot Demo Link
 [Demo Link](	https://dhl-pipeline-1oylq1kfcgpix-webappbucket-14g285dcv3ey5.s3.amazonaws.com/index.html)
 
+##### User can provide following input for Demo purpose or Test Bot
++ Tracking :  Enter tracking# between 5882 to 5889
++ Pick up city and Drop off city : new york, los angeles, chicago, houston, philadelphia, phoenix, san antonio, san diego, dallas, san jose, austin, jacksonville, san francisco, indianapolis, columbus, fort worth, charlotte, detroit, el paso, seattle, denver, washington dc, memphis, boston, nashville, baltimore, portland
+
 ## HCL DHL Hackathon Technology Stack
 ![Technical Stack](https://github.com/kanthedgaurav/HCL_DHL_Bot/blob/master/img/Technical%20Stack.jpg)
 
 ## HCL DHL Hackathon Architecture
-##### User can starts bot by typing or speaking words like "Hi", "Hello" , "DHL" and "Hello DHL" and DhlService intents will send welcome message .
+##### User can starts bot by typing or speaking word like "Hi", "Hello" , "DHL" and "Hello DHL" and DhlService intents will send welcome message .
 ![Architecture](https://github.com/kanthedgaurav/HCL_DHL_Bot/blob/master/img/LLA.jpg)
 1. When user initiate Get Quote Service , AWS Lex takes pickup city , drop off city and box type and calls lambda function "GetQuoteServiceCodeHook" . it will calculate price based on inputs.
 2. When user initiate Shipping Service , AWS Lex takes pickup city , drop off city , pick up date and drop off date and calls lambda function "ShippingServiceCodeHook" .
