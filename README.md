@@ -15,6 +15,8 @@ DHL Bot will offer assistive services like Tracking package, Shipping , Get Quot
 ## HCL DHL Hackathon Bot Demo Link
 [Demo Link](	https://dhl-pipeline-1oylq1kfcgpix-webappbucket-14g285dcv3ey5.s3.amazonaws.com/index.html)
 
+[Demo Video](	https://youtu.be/a89ZKewuX5s)
+
 ##### User can provide following input for Demo purpose or Test Bot
 + Tracking :  Enter tracking# between 5882 to 5889
 + Pick up city and Drop off city : new york, los angeles, chicago, houston, philadelphia, phoenix, san antonio, san diego, dallas, san jose, austin, jacksonville, san francisco, indianapolis, columbus, fort worth, charlotte, detroit, el paso, seattle, denver, washington dc, memphis, boston, nashville, baltimore, portland
